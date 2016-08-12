@@ -1,0 +1,51 @@
+<div class="container style-signup-container layout-signup-container">
+  <div class="row">
+    <h1> Signup </h1>
+
+  <% if @user && @user.errors %>
+    <div class="style-error-box">
+      <% @user.errors.full_messages.each do |message| %>
+          <div class = "row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <div class="alert alert-danger">
+                <%= message %>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="layout-signup-box style-signup-box">
+        <form method="post" action="/accounts/signup">
+          <div class="form-group">
+            <input class="form-control" type="text" id="username" value="<%= @user&&@user.username %>" placeholder="Username" name="user[username]">
+            <input class="form-control" type="password" id="password" value="<%= @user&&@user.password %>" placeholder="Password" name="user[password]">
+            <input class="form-control" type="text" id="email" value="<%= @user&&@user.email %>" placeholder="Email" name="user[email]">
+          </div>
+          <div class="form-group">
+              <label for="title">Title: </label>
+              <input class="form-control" type="text" id="title" name="song[title]">
+              <label for="author">Author: </label>
+              <input class="form-control" type="text" id="author" name="song[author]">
+              <label for="url">URL (optional):</label>
+              <input class="form-control" type="text" id="url" name="song[url]">
+          </div>
+          <footer>
+            <button class="btn btn-warning" type="submit">Submit</button>
+            <br>
+            <br>
+            <a class="layout return" href="/">Actually, I don't want to sign up.</a>
+          </footer>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+<div class="container">

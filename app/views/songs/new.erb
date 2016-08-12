@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <h1>Enter your song details below:</h1>
+    </div>
+  </div>
+
+    <% if @song && @song.errors %>
+      <% @song.errors.full_messages.each do |message| %>
+        <div class = "row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div class="alert alert-danger">
+            <%= message %>
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+    <form method="post" action="/songs">
+
+      <div class="form-group">
+        <label for="title">Title: </label>
+        <input class="form-control" type="text" id="title" name="title">
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author: </label>
+        <input class="form-control" type="text" id="author" name="author">
+      </div>
+
+      <div class="form-group">
+        <label for="url">URL (optional):</label>
+        <input class="form-control" type="text" id="url" name="url">
+      </div>
+
+      <footer>
+        <button type="submit">Submit Song</button>
+        <br>
+        <br>
+        <a class="layout return" href="/">Actually, I don't want to submit a song.</a>
+      </footer>
+
+    </form>
+    </div>
+    <div class="col-md-2"></div>
+  
+  </div>
+</div>

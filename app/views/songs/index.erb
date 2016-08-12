@@ -1,0 +1,58 @@
+<div class= "container-fluid">
+
+  <div class= "row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <h1>THE SONG WALL</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="layout btn-custom">
+        <a class="btn btn-custom" href="/songs/new"> Add a song </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class= "container">
+  <div class="row">
+    <div class="col-md-12">
+
+  <table class="layout table">
+    <tr>
+      <th> Votes </th>
+      <th> Title </th>
+      <th> Author </th>
+      <th> Options </th>
+    </tr>
+
+
+    <% @songs.each do |song| %>
+      <tr data-song-id="<%= song.id %>">
+        <td class="upvote_counter" data-song-id="<%= song.id %>"> <%= song.num_upvotes %> </td>
+        <td> <%= song.title %> </td>
+        <td> <%= song.author %> </td>
+        <td>
+          <form action="/reviews/<%= song.id %>" method="get">
+            <button class="btn btn-custom btn-options" type="submit">See Reviews</button>
+          </form>
+
+          <% if is_logged_in? %>
+            <button class="upvote btn btn-default" data-song-id="<%= song.id %>">
+              <%= current_user.upvotes.find_by(song_id: song.id) ? 'Downvote' : 'Upvote' %>
+            </button>
+          <% end %>
+
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
+
+    </div>
+  </div>
+</div>
